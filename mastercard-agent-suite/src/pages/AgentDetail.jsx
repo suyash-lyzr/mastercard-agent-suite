@@ -144,7 +144,7 @@ export function AgentDetail() {
                 className="btn btn--primary detail__deploy"
                 onClick={() => setOpen(true)}
               >
-                Clone &amp; Customise for Your Business{" "}
+                Customise &amp; Clone for Your Business{" "}
                 <span className="arrow">→</span>
               </button>
 

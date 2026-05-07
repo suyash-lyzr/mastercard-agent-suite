@@ -920,6 +920,17 @@ body.press-mode .modal__foot-note,
 body.press-mode .field__hint {
   color: var(--press-ink-2);
 }
+body.press-mode .modal__submit {
+  background: var(--press-ink) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: 1px solid var(--press-ink) !important;
+  box-shadow: none !important;
+}
+body.press-mode .modal__submit:hover {
+  background: #2a2926 !important;
+  border-color: #2a2926 !important;
+}
 body.press-mode .toggle {
   background: #ffffff;
   border-color: var(--press-line);
