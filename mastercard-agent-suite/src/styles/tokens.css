@@ -1,0 +1,98 @@
+:root {
+  /* Mastercard brand */
+  --mc-red: #eb001b;
+  --mc-orange: #ff5f00;
+  --mc-yellow: #f79e1b;
+
+  /* Surfaces — warm dark, MasterClass cinema */
+  --bg-base: #19110b;
+  --bg-elev-0: #1c1410;
+  --bg-elev-1: #231a14;
+  --bg-elev-2: #2a2018;
+  --bg-overlay: rgba(10, 6, 4, 0.78);
+
+  /* Type */
+  --text-primary: #f5f0e8;
+  --text-secondary: #b3a89b;
+  --text-tertiary: #7a6f64;
+  --text-on-red: #ffffff;
+
+  /* Lines + glass */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-red-glow: rgba(235, 0, 27, 0.45);
+
+  /* Brand gradient */
+  --grad-brand: linear-gradient(135deg, #eb001b 0%, #ff5f00 55%, #f79e1b 100%);
+  --grad-text: linear-gradient(135deg, #f5f0e8 0%, #f79e1b 100%);
+  --grad-hero: radial-gradient(
+      ellipse 80% 60% at 20% 10%,
+      rgba(235, 0, 27, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 90% 20%,
+      rgba(247, 158, 27, 0.12) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 70% 40% at 50% 100%,
+      rgba(255, 95, 0, 0.08) 0%,
+      transparent 55%
+    );
+  --grad-divider: linear-gradient(
+    90deg,
+    transparent,
+    rgba(235, 0, 27, 0.5),
+    rgba(247, 158, 27, 0.5),
+    transparent
+  );
+
+  /* Type families */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale */
+  --fs-display-xl: clamp(56px, 8vw, 104px);
+  --fs-display-lg: clamp(40px, 5.5vw, 72px);
+  --fs-display-md: clamp(32px, 4vw, 48px);
+  --fs-display-sm: clamp(24px, 3vw, 36px);
+  --fs-h1: 36px;
+  --fs-h2: 28px;
+  --fs-h3: 22px;
+  --fs-h4: 18px;
+  --fs-body-lg: 17px;
+  --fs-body: 15px;
+  --fs-body-sm: 13px;
+  --fs-eyebrow: 11px;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-elev: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 24px 80px rgba(0, 0, 0, 0.65);
+  --shadow-red: 0 8px 24px rgba(235, 0, 27, 0.35),
+    0 0 0 1px rgba(235, 0, 27, 0.45);
+  --shadow-glow-yellow: 0 0 24px rgba(247, 158, 27, 0.18);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 480ms;
+
+  /* Layout */
+  --container: 1280px;
+  --container-wide: 1440px;
+  --nav-h: 72px;
+}

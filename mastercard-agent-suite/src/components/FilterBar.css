@@ -1,0 +1,113 @@
+.filterbar {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(25, 17, 11, 0.94) 70%, rgba(25, 17, 11, 0));
+  backdrop-filter: blur(12px);
+  padding: 18px 0 22px;
+  margin-bottom: 8px;
+}
+
+.filterbar__row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.filterbar__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  transition:
+    color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+  white-space: nowrap;
+}
+
+.pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pill--active {
+  background: var(--grad-brand);
+  color: var(--text-on-red);
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(235, 0, 27, 0.3);
+}
+
+.pill--active:hover {
+  color: var(--text-on-red);
+}
+
+.filterbar__search {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-pill);
+  padding: 0 16px;
+  height: 42px;
+  min-width: 280px;
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out);
+}
+
+.filterbar__search:focus-within {
+  border-color: rgba(247, 158, 27, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.filterbar__search i {
+  color: var(--text-tertiary);
+  font-size: 16px;
+}
+
+.filterbar__search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.filterbar__search input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.filterbar__count {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-left: 1px solid var(--border-default);
+  padding-left: 12px;
+}
+
+@media (max-width: 768px) {
+  .filterbar__search {
+    margin-left: 0;
+    width: 100%;
+    min-width: 0;
+  }
+}

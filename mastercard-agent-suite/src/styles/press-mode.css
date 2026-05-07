@@ -1,0 +1,1259 @@
+/* ─────────────────────────────────────────────────────────
+   PRESS MODE — Mastercard cream theme + Architect Agentlets layout.
+   Cream bg, white pill nav with brand text, big search bar,
+   sort tabs, sidebar with categories + use-cases checkboxes,
+   tall cards with mock-dashboard previews framed as screenshots.
+   Scoped to body.press-mode so other routes keep their theme.
+   ───────────────────────────────────────────────────────── */
+
+:root {
+  --press-cream: #f0ebe1;
+  --press-cream-2: #f7f3ec;
+  --press-ink: #141413;
+  --press-ink-2: #3d3b38;
+  --press-gray: #74726e;
+  --press-gray-2: #b8b3a9;
+  --press-line: rgba(20, 20, 19, 0.1);
+  --press-line-strong: rgba(20, 20, 19, 0.2);
+  --press-orange: #ff671b;
+  --press-orange-deep: #e85a13;
+  --press-footer-bg: #141413;
+  --press-font: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+/* ─── Override dark CSS-variable tokens so existing components
+   (AgentDetail, Deployed, AgentCard dark mode, etc.) auto-pick
+   up the light press theme without per-page rewrites. ─── */
+body.press-mode {
+  /* Type colors */
+  --text-primary: #141413;
+  --text-secondary: #3d3b38;
+  --text-tertiary: #74726e;
+  --text-on-red: #ffffff;
+
+  /* Surfaces */
+  --bg-base: #f0ebe1;
+  --bg-elev-0: #ffffff;
+  --bg-elev-1: #f7f3ec;
+  --bg-elev-2: #ffffff;
+  --bg-overlay: rgba(20, 20, 19, 0.4);
+
+  /* Borders */
+  --border-subtle: rgba(20, 20, 19, 0.06);
+  --border-default: rgba(20, 20, 19, 0.1);
+  --border-strong: rgba(20, 20, 19, 0.2);
+  --border-red-glow: rgba(235, 0, 27, 0.3);
+
+  /* Use Inter for headings too — drop Playfair on press routes */
+  --font-display: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* Light shadows */
+  --shadow-card: 0 1px 2px rgba(20, 20, 19, 0.04),
+    0 4px 16px rgba(20, 20, 19, 0.06);
+  --shadow-elev: 0 4px 24px rgba(20, 20, 19, 0.1);
+  --shadow-glow-yellow: 0 0 20px rgba(247, 158, 27, 0.18);
+}
+
+body.press-mode,
+body.press-mode #root,
+body.press-mode .app {
+  background: var(--press-cream) !important;
+  color: var(--press-ink);
+  font-family: var(--press-font);
+}
+body.press-mode {
+  background-image: none !important;
+}
+body.press-mode::before {
+  display: none !important;
+}
+
+/* ─── NAV: black mastercard.com-style bar, fixed full-width ─── */
+body.press-mode .nav {
+  background: #000000;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 72px;
+  display: flex;
+  align-items: center;
+}
+body.press-mode .app {
+  padding-top: 72px;
+}
+body.press-mode .app {
+  padding-top: 64px;
+  min-height: 0;
+}
+body.press-mode #root {
+  min-height: 0;
+}
+body.press-mode .nav__inner {
+  background: transparent;
+  backdrop-filter: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 clamp(20px, 3vw, 40px);
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+body.press-mode .nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+body.press-mode .nav__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+body.press-mode .nav__brand-mark {
+  font-family: var(--press-font);
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.005em;
+}
+body.press-mode .nav__brand-sub {
+  font-family: var(--press-font);
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+body.press-mode .nav__powered-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--press-orange);
+  display: inline-block;
+}
+body.press-mode .nav__powered {
+  display: none;
+}
+
+body.press-mode .nav__links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+}
+body.press-mode .nav__link {
+  font-family: var(--press-font);
+  font-size: 15px;
+  font-weight: 400;
+  color: #ffffff;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  position: relative;
+  letter-spacing: 0;
+  transition: color 0.15s ease;
+}
+body.press-mode .nav__link:hover {
+  color: var(--press-orange);
+  background: transparent;
+}
+body.press-mode .nav__link--active {
+  color: var(--press-orange);
+  background: transparent;
+  font-weight: 500;
+}
+body.press-mode .nav__link--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--press-orange);
+}
+body.press-mode .nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body.press-mode .nav__cta {
+  display: none;
+}
+body.press-mode .nav__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+body.press-mode .nav__icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  body.press-mode .nav__links {
+    display: none;
+  }
+}
+
+/* ─── PAGE CONTAINER ─── */
+body.press-mode .marketplace {
+  padding: 0;
+  background: transparent;
+}
+body.press-mode .press__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px clamp(16px, 2vw, 28px) 24px;
+}
+
+/* ─── PAGE HEADER ─── */
+body.press-mode .press__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+body.press-mode .press__h1 {
+  font-family: var(--press-font);
+  font-size: clamp(26px, 2.6vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  color: var(--press-ink);
+  margin: 0;
+}
+body.press-mode .press__sub {
+  font-family: var(--press-font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--press-gray);
+  margin: 0;
+}
+
+/* ─── SEARCH ROW: search + sort tabs ─── */
+body.press-mode .press__searchrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+body.press-mode .press__searchbox {
+  flex: 1;
+  min-width: 280px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+body.press-mode .press__searchbox:focus-within {
+  border-color: var(--press-line-strong);
+  box-shadow: 0 0 0 4px rgba(20, 20, 19, 0.04);
+}
+body.press-mode .press__searchbox i {
+  color: var(--press-gray);
+  font-size: 16px;
+}
+body.press-mode .press__searchbox input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--press-ink);
+  font-family: var(--press-font);
+  font-size: 14px;
+}
+body.press-mode .press__searchbox input::placeholder {
+  color: var(--press-gray-2);
+}
+
+body.press-mode .press__sorttabs {
+  display: inline-flex;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 2px;
+}
+body.press-mode .press__sorttab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 0;
+  color: var(--press-gray);
+  font-family: var(--press-font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+body.press-mode .press__sorttab i {
+  font-size: 14px;
+}
+body.press-mode .press__sorttab--active {
+  background: rgba(255, 103, 27, 0.1);
+  color: var(--press-orange-deep);
+}
+
+/* ─── LAYOUT: sidebar + content ─── */
+body.press-mode .press__layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  body.press-mode .press__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── SIDEBAR ─── */
+body.press-mode .press__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 84px;
+}
+@media (max-width: 900px) {
+  body.press-mode .press__sidebar {
+    position: static;
+  }
+}
+
+body.press-mode .press__filtergroup {
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+body.press-mode .press__filterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--press-font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--press-ink);
+  margin-bottom: 12px;
+}
+body.press-mode .press__selectall {
+  font-family: var(--press-font);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--press-orange-deep);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+body.press-mode .press__checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body.press-mode .press__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  cursor: pointer;
+  font-family: var(--press-font);
+  font-size: 13.5px;
+  color: var(--press-ink-2);
+}
+body.press-mode .press__check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+body.press-mode .press__checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--press-line-strong);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+body.press-mode .press__check input:checked + .press__checkbox {
+  background: var(--press-ink);
+  border-color: var(--press-ink);
+}
+body.press-mode .press__check input:checked + .press__checkbox::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid #ffffff;
+  border-bottom: 1.5px solid #ffffff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+body.press-mode .press__check:hover .press__checklabel {
+  color: var(--press-ink);
+}
+
+/* ─── RESULT HEADER ─── */
+body.press-mode .press__resulthead {
+  margin-bottom: 16px;
+}
+body.press-mode .press__resulttitle {
+  font-family: var(--press-font);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--press-ink);
+  margin: 0;
+}
+body.press-mode .press__resultcount {
+  color: var(--press-gray);
+  font-weight: 500;
+}
+
+/* ─── CARD GRID ─── */
+body.press-mode .marketplace__grid,
+body.press-mode .press__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 1180px) {
+  body.press-mode .press__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  body.press-mode .press__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── CARDS — taller, with the dark mock-dashboard preview shown as a screenshot ─── */
+body.press-mode .agentcard {
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  box-shadow: none;
+  font-family: var(--press-font);
+  color: var(--press-ink);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+body.press-mode .agentcard::before {
+  display: none;
+}
+body.press-mode .agentcard:hover {
+  border-color: var(--press-line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(20, 20, 19, 0.08);
+}
+
+/* Card top: show the new AgentArtwork (clean wireframe SVG art).
+   Hide the old dark mock preview entirely in press mode. */
+body.press-mode .agentcard__media {
+  padding: 0;
+  height: 200px;
+  position: relative;
+  border-bottom: 1px solid var(--press-line);
+  overflow: hidden;
+}
+body.press-mode .agentcard__media .preview,
+body.press-mode .agentcard__media .preview--card {
+  display: none !important;
+}
+body.press-mode .agentcard__media .artwork {
+  border-radius: 0;
+}
+/* Re-invert any actual photographic content inside the preview if present
+   (none in our mocks, but defensive). */
+body.press-mode .agentcard__media .preview img,
+body.press-mode .agentcard__media .preview video {
+  filter: invert(1) hue-rotate(180deg);
+}
+/* Hide the icon-tile we previously injected; we're using the real preview now */
+body.press-mode .agentcard__icontile {
+  display: none !important;
+}
+body.press-mode .agentcard__badges {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  z-index: 4;
+}
+body.press-mode .agentcard__overlay {
+  display: none;
+}
+
+body.press-mode .agentcard__body {
+  background: #ffffff;
+  padding: 14px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+body.press-mode .agentcard__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+body.press-mode .agentcard__category {
+  color: var(--press-gray);
+  font-weight: 500;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+body.press-mode .agentcard__category i {
+  color: var(--press-orange);
+  font-size: 13px;
+}
+body.press-mode .agentcard__name {
+  color: var(--press-ink);
+  font-family: var(--press-font);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  margin: 0;
+}
+body.press-mode .agentcard__tagline {
+  color: var(--press-ink-2);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+body.press-mode .agentcard__desc {
+  color: var(--press-gray);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 8px 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.press-mode .agentcard__foot {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--press-line);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 11px;
+}
+body.press-mode .agentcard__channel {
+  color: var(--press-gray);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+body.press-mode .agentcard__channel i {
+  font-size: 12px;
+}
+body.press-mode .agentcard__usedby {
+  display: none;
+}
+body.press-mode .agentcard__badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 103, 27, 0.1);
+  border: 1px solid rgba(255, 103, 27, 0.22);
+  color: #c64a0d;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+body.press-mode .agentcard__badge-chip i {
+  font-size: 11px;
+  color: #ff671b;
+}
+body.press-mode .agentcard__rating {
+  color: var(--press-ink);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 11.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+body.press-mode .agentcard__rating i {
+  color: var(--press-orange);
+  font-size: 12px;
+}
+body.press-mode .agentcard__reviews {
+  color: var(--press-gray);
+  margin-left: 2px;
+}
+
+/* Tag chips */
+body.press-mode .tag {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  color: var(--press-ink);
+  border: 1px solid rgba(20, 20, 19, 0.08);
+  font-family: var(--press-font);
+  font-size: 8.5px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(20, 20, 19, 0.06);
+}
+body.press-mode .tag--live {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--press-ink);
+  border-color: rgba(20, 20, 19, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+body.press-mode .tag--soon {
+  background: rgba(20, 20, 19, 0.78);
+  color: #ffffff;
+  border-color: transparent;
+}
+body.press-mode .tag--live .live-dot {
+  background: #22c55e;
+  width: 5px;
+  height: 5px;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+/* Empty state — fill the content column, don't shift the layout */
+body.press-mode .marketplace__empty {
+  color: var(--press-ink-2);
+  text-align: center;
+  padding: 80px 24px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+body.press-mode .marketplace__empty h3 {
+  color: var(--press-ink);
+  font-family: var(--press-font);
+  font-weight: 600;
+  margin: 12px 0 6px;
+}
+body.press-mode .marketplace__empty i {
+  font-size: 32px;
+  color: var(--press-gray);
+}
+body.press-mode .marketplace__empty p {
+  color: var(--press-gray);
+  margin: 0;
+}
+
+/* Make sure the layout stays put when the grid is empty */
+body.press-mode .press__layout {
+  width: 100%;
+}
+body.press-mode .press__content {
+  min-width: 0;
+}
+/* If no agents, hide the empty grid container so it doesn't add stray gap */
+body.press-mode .press__grid:empty {
+  display: none;
+}
+
+body.press-mode .market-head {
+  display: none;
+}
+
+/* ─── FOOTER ─── */
+body.press-mode .footer.footer--slim {
+  background: var(--press-footer-bg);
+  border-top: 0;
+  margin-top: 24px;
+  padding: 22px 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+body.press-mode .footer--slim .footer__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body.press-mode .footer--slim .footer__brand,
+body.press-mode .footer--slim .footer__powered {
+  color: rgba(255, 255, 255, 0.78);
+}
+body.press-mode .footer--slim .footer__brand-text {
+  color: #ffffff;
+  font-family: var(--press-font);
+  font-weight: 500;
+}
+body.press-mode .footer--slim .footer__sep {
+  color: rgba(255, 255, 255, 0.4);
+}
+body.press-mode .footer--slim .footer__legal-line {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Internal pages (AgentDetail, Deployed) — apply press theme.
+   Most colors flip via the CSS-variable overrides above. These
+   rules handle the few hardcoded white-tint surfaces and the
+   big AgentPreview embed.
+   ───────────────────────────────────────────────────────── */
+
+/* Flip hardcoded soft-white tints to soft-ink tints */
+body.press-mode .detail__back {
+  background: rgba(20, 20, 19, 0.025);
+}
+body.press-mode .detail__back:hover {
+  background: rgba(20, 20, 19, 0.05);
+}
+body.press-mode .detail__used-chip {
+  background: rgba(20, 20, 19, 0.03);
+  border: 1px solid var(--press-line);
+}
+body.press-mode .detail__powered-card {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 19, 0.03),
+    rgba(20, 20, 19, 0.01)
+  );
+  border: 1px solid var(--press-line);
+}
+body.press-mode .detail__powered-mark {
+  background: rgba(20, 20, 19, 0.03);
+}
+
+/* Apply the same dark-to-light inversion to the BIG detail-size preview */
+body.press-mode .detail__preview .preview,
+body.press-mode .preview--detail {
+  filter: invert(0.92) hue-rotate(180deg) saturate(1.05) brightness(1.02);
+  border: 1px solid var(--press-line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(20, 20, 19, 0.08);
+}
+body.press-mode .detail__preview .preview img,
+body.press-mode .detail__preview .preview video,
+body.press-mode .preview--detail img,
+body.press-mode .preview--detail video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* CTA stack frame */
+body.press-mode .detail__cta-stack {
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  padding: 18px;
+}
+body.press-mode .detail__try {
+  background: #ffffff;
+  border: 1px solid var(--press-line-strong);
+  color: var(--press-ink);
+}
+body.press-mode .detail__try:hover {
+  background: rgba(20, 20, 19, 0.04);
+}
+
+/* Page background carries through; the dividers we added still work */
+body.press-mode .divider--press {
+  background: var(--press-line);
+}
+
+/* H1 and section headings on detail page → Inter, sans, dark */
+body.press-mode .detail__name {
+  font-family: var(--press-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+body.press-mode .detail__tagline {
+  font-family: var(--press-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--press-ink);
+}
+body.press-mode .detail__h2 {
+  font-family: var(--press-font);
+  font-weight: 600;
+}
+
+/* Capabilities checkmark dots — orange on cream */
+body.press-mode .detail__cap-dot {
+  background: var(--press-orange);
+  color: #ffffff;
+}
+
+/* Press-style breadcrumbs we added — already light-friendly via vars */
+
+/* Related agents heading */
+body.press-mode .detail__related {
+  border-top-color: var(--press-line);
+}
+body.press-mode .detail__related-title {
+  font-family: var(--press-font);
+  font-weight: 700;
+}
+
+/* ─── Deployed (success) page ─── */
+body.press-mode .deployed {
+  background: transparent;
+}
+body.press-mode .deployed__check {
+  /* keep brand circle as-is */
+}
+body.press-mode .deployed__title,
+body.press-mode .deployed__h1 {
+  font-family: var(--press-font);
+  font-weight: 700;
+}
+body.press-mode .deployed__card,
+body.press-mode .deployed__summary {
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+}
+
+/* Modal (CloneModal) — light variant */
+body.press-mode .modal {
+  background: transparent;
+  color: var(--press-ink);
+}
+body.press-mode .modal__backdrop {
+  background: rgba(20, 20, 19, 0.45);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+}
+body.press-mode .modal__panel {
+  width: min(820px, 100%);
+  max-height: calc(100vh - 48px);
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(20, 20, 19, 0.18), 0 8px 24px rgba(20, 20, 19, 0.08);
+  color: var(--press-ink);
+}
+body.press-mode .modal__title {
+  color: var(--press-ink);
+  font-family: var(--press-font);
+}
+body.press-mode .modal__eyebrow {
+  color: #ff671b;
+}
+body.press-mode .modal__close {
+  background: #ffffff;
+  border-color: var(--press-line);
+  color: var(--press-ink-2);
+}
+body.press-mode .field input,
+body.press-mode .field select,
+body.press-mode .field textarea {
+  background: #ffffff;
+  border: 1px solid var(--press-line-strong);
+  color: var(--press-ink);
+}
+body.press-mode .field input:focus,
+body.press-mode .field select:focus,
+body.press-mode .field textarea:focus {
+  border-color: #ff671b;
+  background: #ffffff;
+}
+body.press-mode .field__label {
+  color: var(--press-ink-2);
+}
+body.press-mode .modal__intro p,
+body.press-mode .modal__foot-note,
+body.press-mode .field__hint {
+  color: var(--press-ink-2);
+}
+body.press-mode .toggle {
+  background: #ffffff;
+  border-color: var(--press-line);
+  color: var(--press-ink);
+}
+body.press-mode .toggle--on {
+  background: var(--press-ink);
+  color: #ffffff;
+  border-color: var(--press-ink);
+  box-shadow: none;
+}
+body.press-mode .upload {
+  background: #faf6ee;
+  border-color: var(--press-line-strong);
+  color: var(--press-ink-2);
+}
+
+/* Match related-agent cards to the home grid card size.
+   Home cards live in a 3-col grid AFTER a 240px sidebar, so they
+   have less horizontal real estate. Constrain the related section
+   to the same effective content width. */
+body.press-mode .detail__related {
+  max-width: 1180px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.press-mode .detail__related-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 1180px) {
+  body.press-mode .detail__related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  body.press-mode .detail__related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   AgentDetail spacing pass — give the light theme breathing room.
+   Light backgrounds need more whitespace than dark to feel premium.
+   ───────────────────────────────────────────────────────── */
+
+/* Page gets cleared by fixed nav, modest bottom */
+body.press-mode .detail {
+  padding: 12px 0 56px;
+}
+
+body.press-mode .detail__crumbs {
+  margin-bottom: 20px;
+}
+
+/* Two-column gap */
+body.press-mode .detail__layout {
+  gap: 48px;
+}
+@media (max-width: 1024px) {
+  body.press-mode .detail__layout {
+    gap: 32px;
+  }
+}
+
+body.press-mode .detail__main {
+  gap: 14px;
+}
+
+body.press-mode .detail__pressline {
+  margin-bottom: 2px;
+}
+body.press-mode .detail__name {
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.1;
+  margin-top: 2px;
+}
+body.press-mode .detail__tagline {
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--press-ink);
+  margin: 0;
+  max-width: 32ch;
+}
+body.press-mode .divider--press {
+  margin: 12px 0;
+  max-width: 720px;
+}
+body.press-mode .detail__desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--press-ink-2);
+  margin-top: 2px;
+}
+body.press-mode .detail__rating {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+body.press-mode .detail__section {
+  gap: 12px;
+  padding-top: 8px;
+}
+body.press-mode .detail__h2 {
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+body.press-mode .detail__caps {
+  gap: 10px;
+}
+body.press-mode .detail__caps li {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: var(--press-ink);
+  gap: 10px;
+}
+body.press-mode .detail__cap-dot {
+  width: 20px;
+  height: 20px;
+  background: var(--press-orange);
+  color: #ffffff;
+}
+
+body.press-mode .detail__used {
+  gap: 8px;
+}
+body.press-mode .detail__used-chip {
+  padding: 8px 14px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  font-size: 13px;
+  color: var(--press-ink);
+}
+body.press-mode .detail__used-chip i {
+  color: var(--press-orange);
+}
+
+body.press-mode .detail__poweredby {
+  margin-top: 12px;
+}
+body.press-mode .detail__poweredby-row {
+  gap: 12px;
+}
+body.press-mode .detail__powered-card {
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 10px;
+  gap: 12px;
+}
+body.press-mode .detail__powered-mark {
+  background: var(--press-cream-2);
+  border-color: var(--press-line);
+  color: var(--press-orange);
+}
+body.press-mode .detail__powered-name {
+  color: var(--press-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+body.press-mode .detail__powered-sub {
+  color: var(--press-gray);
+  font-size: 12.5px;
+}
+
+body.press-mode .detail__aside {
+  gap: 16px;
+  top: calc(88px + 12px);
+}
+body.press-mode .detail__cta-stack {
+  padding: 16px;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(20, 20, 19, 0.04);
+}
+body.press-mode .detail__try {
+  padding: 10px 16px;
+}
+body.press-mode .detail__deploy {
+  padding: 13px 20px;
+  font-size: 14.5px;
+}
+body.press-mode .detail__assurances {
+  margin: 6px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--press-line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+body.press-mode .detail__assurances li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--press-ink-2);
+}
+body.press-mode .detail__assurances i {
+  color: var(--press-orange);
+  font-size: 14px;
+}
+
+body.press-mode .detail__related {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--press-line);
+}
+body.press-mode .detail__related-head {
+  margin-bottom: 20px;
+  gap: 6px;
+}
+body.press-mode .detail__related-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* Eyebrow above related title */
+body.press-mode .eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--press-orange);
+}
+
+/* ─────────────────────────────────────────────────────────
+   AgentDetail right-column preview — replace the tall dark
+   inverted mock with a framed AgentArtwork "screenshot".
+   ───────────────────────────────────────────────────────── */
+
+/* Drop the dark mock at detail size in press mode */
+body.press-mode .detail__preview .preview,
+body.press-mode .detail__preview .preview--detail {
+  display: none !important;
+}
+
+/* Preview frame: white card with chrome bar + artwork inside */
+body.press-mode .detail__preview {
+  background: #ffffff;
+  border: 1px solid var(--press-line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(20, 20, 19, 0.06);
+  position: relative;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* When showing an uploaded screenshot in detail view, let the frame grow
+   to the image's natural aspect so nothing is cropped. */
+body.press-mode .detail__preview:has(.artwork--shot) {
+  height: auto;
+}
+body.press-mode .detail__preview .artwork--shot {
+  background: #ffffff;
+  flex: none;
+}
+body.press-mode .detail__preview .artwork--shot .artwork__shot {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+body.press-mode .detail__preview-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--press-line);
+  background: var(--press-cream-2);
+  flex-shrink: 0;
+}
+body.press-mode .detail__preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(20, 20, 19, 0.18);
+}
+body.press-mode .detail__preview-dot:nth-child(1) {
+  background: #eb001b;
+}
+body.press-mode .detail__preview-dot:nth-child(2) {
+  background: #f79e1b;
+}
+body.press-mode .detail__preview-dot:nth-child(3) {
+  background: #16a34a;
+}
+body.press-mode .detail__preview-label {
+  margin-left: 10px;
+  font-family: var(--press-font);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--press-ink-2);
+  letter-spacing: 0.005em;
+}
+body.press-mode .detail__preview-live {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #15803d;
+}
+body.press-mode .detail__preview-live .live-dot {
+  background: #16a34a;
+  animation: pulse 2s infinite;
+}
+
+/* Artwork fills the remaining space cleanly */
+body.press-mode .detail__preview .artwork {
+  position: relative;
+  inset: auto;
+  flex: 1;
+  display: flex;
+}
+
+/* Hide artwork outside press mode (default-hidden by AgentArtwork.css already,
+   but make sure the inset-positioning we use elsewhere doesn't apply here) */
+.detail__preview .artwork {
+  position: relative;
+  inset: auto;
+  flex: 1;
+}
