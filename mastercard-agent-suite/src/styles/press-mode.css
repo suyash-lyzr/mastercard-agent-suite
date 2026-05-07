@@ -942,13 +942,26 @@ body.press-mode .upload {
    have less horizontal real estate. Constrain the related section
    to the same effective content width. */
 body.press-mode .detail__related {
-  max-width: 1180px !important;
+  max-width: 1440px !important;
   margin-left: auto;
   margin-right: auto;
+  padding-left: clamp(16px, 2vw, 28px);
+  padding-right: clamp(16px, 2vw, 28px);
 }
 body.press-mode .detail__related-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+@media (max-width: 1180px) {
+  body.press-mode .detail__related-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  body.press-mode .detail__related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 1180px) {
   body.press-mode .detail__related-grid {
@@ -968,11 +981,41 @@ body.press-mode .detail__related-grid {
 
 /* Page gets cleared by fixed nav, modest bottom */
 body.press-mode .detail {
-  padding: 12px 0 56px;
+  padding: 48px 0 56px;
 }
 
 body.press-mode .detail__crumbs {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+/* Demo business chip under detail name */
+body.press-mode .detail__demo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 103, 27, 0.08);
+  border: 1px solid rgba(255, 103, 27, 0.18);
+  border-radius: 999px;
+  margin-top: 4px;
+  font-family: var(--press-font);
+  align-self: flex-start;
+}
+body.press-mode .detail__demo-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--press-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+body.press-mode .detail__demo-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--press-ink);
+}
+body.press-mode .detail__demo-sub {
+  font-size: 13px;
+  color: var(--press-gray);
 }
 
 /* Two-column gap */
@@ -1109,6 +1152,15 @@ body.press-mode .detail__try {
 body.press-mode .detail__deploy {
   padding: 13px 20px;
   font-size: 14.5px;
+  background: var(--press-ink) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: 1px solid var(--press-ink) !important;
+  box-shadow: none !important;
+}
+body.press-mode .detail__deploy:hover {
+  background: #2a2926 !important;
+  border-color: #2a2926 !important;
 }
 body.press-mode .detail__assurances {
   margin: 6px 0 0;

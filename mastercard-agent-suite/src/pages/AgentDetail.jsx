@@ -43,6 +43,17 @@ export function AgentDetail() {
           {/* LEFT */}
           <div className="detail__main">
             <h1 className="detail__name">{agent.name}</h1>
+            {agent.demoBusiness && (
+              <div className="detail__demo">
+                <span className="detail__demo-label">Live demo for</span>
+                <span className="detail__demo-name">
+                  {agent.demoBusiness.name}
+                </span>
+                <span className="detail__demo-sub">
+                  · {agent.demoBusiness.sub}
+                </span>
+              </div>
+            )}
             <hr className="divider divider--press" />
             <p className="detail__tagline">{agent.tagline}</p>
             <hr className="divider divider--press" />
@@ -86,43 +97,11 @@ export function AgentDetail() {
             <section className="detail__section">
               <h2 className="detail__h2">Built for</h2>
               <div className="detail__used">
-                {agent.usedBy.map((u) => (
+                {(agent.builtFor || agent.usedBy).map((u) => (
                   <span key={u} className="detail__used-chip">
                     <i className="ti ti-building-store" /> {u}
                   </span>
                 ))}
-              </div>
-            </section>
-
-            <section className="detail__section detail__poweredby">
-              <span className="eyebrow">Built on</span>
-              <div className="detail__poweredby-row">
-                <div className="detail__powered-card">
-                  <span className="detail__powered-mark">
-                    <i className="ti ti-cube-3d-sphere" />
-                  </span>
-                  <div>
-                    <div className="detail__powered-name">Architect by Lyzr</div>
-                    <div className="detail__powered-sub">
-                      Agent runtime &amp; no-code builder
-                    </div>
-                  </div>
-                </div>
-                <div className="detail__powered-card">
-                  <span
-                    className="detail__powered-mark detail__powered-mark--mc"
-                    aria-hidden
-                  >
-                    <span className="detail__mc-circle detail__mc-circle--red" />
-                    <span className="detail__mc-circle detail__mc-circle--yellow" />
-                  </span>
-                  <div>
-                    <div className="detail__powered-name">Mastercard Agent Suite</div>
-                    <div className="detail__powered-sub">
-                      Trusted distribution for SMBs
-                    </div>
-                  </div>
-                </div>
               </div>
             </section>
           </div>
@@ -134,7 +113,9 @@ export function AgentDetail() {
                 <span className="detail__preview-dot" />
                 <span className="detail__preview-dot" />
                 <span className="detail__preview-dot" />
-                <span className="detail__preview-label">{agent.name}</span>
+                <span className="detail__preview-label">
+                  {agent.demoBusiness ? agent.demoBusiness.name : agent.name}
+                </span>
                 <span className="detail__preview-live">
                   <span className="live-dot" /> Live preview
                 </span>
@@ -151,7 +132,7 @@ export function AgentDetail() {
                   rel="noreferrer"
                   className="btn btn--ghost detail__try"
                 >
-                  <i className="ti ti-external-link" /> Try it live in a new tab
+                  <i className="ti ti-external-link" /> View App
                 </a>
               ) : (
                 <button className="btn btn--ghost detail__try" disabled>
@@ -168,16 +149,11 @@ export function AgentDetail() {
               </button>
 
               <ul className="detail__assurances">
-                <li>
-                  <i className="ti ti-shield-check" /> SOC 2 &amp; GDPR ready
-                </li>
-                <li>
-                  <i className="ti ti-bolt" /> Deploys in under 60 seconds
-                </li>
-                <li>
-                  <i className="ti ti-credit-card" /> Billed through your
-                  Mastercard account
-                </li>
+                {(agent.keyFeatures || []).map((f) => (
+                  <li key={f.text}>
+                    <i className={`ti ${f.icon}`} /> {f.text}
+                  </li>
+                ))}
               </ul>
             </div>
           </aside>
@@ -192,7 +168,7 @@ export function AgentDetail() {
         <div className="detail__related-grid">
           {agents
             .filter((a) => a.id !== agent.id)
-            .slice(0, 3)
+            .slice(0, 4)
             .map((a) => (
               <AgentCard key={a.id} agent={a} />
             ))}

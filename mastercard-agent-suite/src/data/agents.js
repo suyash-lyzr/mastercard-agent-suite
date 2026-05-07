@@ -51,6 +51,13 @@ export const agents = [
     status: "live",
     badge: "Most popular",
     useCases: ["inbound-calls", "customer-support"],
+    demoBusiness: { name: "Bloom & Co", sub: "Neighbourhood florist" },
+    builtFor: ["Service-based businesses", "Appointment-led teams", "Local retail"],
+    keyFeatures: [
+      { icon: "ti-microphone-2", text: "Natural, warm voice — sounds human" },
+      { icon: "ti-book-2", text: "Trained on your hours, prices, and FAQs" },
+      { icon: "ti-arrow-forward-up", text: "Hands off to your team with full context" },
+    ],
   },
   {
     id: "support-chat",
@@ -74,15 +81,22 @@ export const agents = [
     usedBy: ["E-commerce stores", "SaaS companies", "Retail shops"],
     capabilities: [
       "Answer FAQs from your knowledge base",
-      "Handle order and delivery queries",
+      "Handle order, shipping, and delivery queries",
       "Process return and refund requests",
-      "Escalate to a human when needed",
-      "Embeds on any website in minutes",
+      "Speak in your brand's tone — not a generic bot",
+      "Escalate to a human with full context",
     ],
     architectUrl: "https://preview--cove-brew-brilliant-beam-nyba.app.architect.new/",
     status: "live",
     badge: "Top rated",
     useCases: ["customer-support"],
+    demoBusiness: { name: "Cove Coffee Co.", sub: "DTC specialty coffee roaster" },
+    builtFor: ["E-commerce stores", "Subscription businesses", "Service brands"],
+    keyFeatures: [
+      { icon: "ti-clock-24", text: "Always on — answers the moment a question lands" },
+      { icon: "ti-message-circle", text: "Embeds on any website in minutes" },
+      { icon: "ti-trending-down", text: "Cuts response time from hours to seconds" },
+    ],
   },
   {
     id: "sales-voice",
@@ -91,7 +105,7 @@ export const agents = [
     description:
       "Qualifies inbound leads, pitches your offering, handles objections, and books a discovery call — over a natural phone conversation.",
     longDescription:
-      "A senior-grade SDR that never sleeps. Picks up inbound calls, qualifies the lead against your ICP, delivers a tailored pitch, handles common objections, and books a discovery call straight on your team's calendar. Logs everything to your CRM with full transcripts.",
+      "A tireless SDR for your inbound pipeline. Picks up every call, qualifies the lead against your ICP, delivers a tailored pitch, handles common objections, and books a discovery call straight on your team's calendar. Logs every conversation to your CRM with the full transcript.",
     category: "sales",
     categoryLabel: "Sales",
     channel: "Voice",
@@ -115,6 +129,13 @@ export const agents = [
     status: "live",
     badge: "New",
     useCases: ["inbound-calls", "lead-qualification"],
+    demoBusiness: { name: "Atlas Wealth Partners", sub: "Boutique wealth advisory" },
+    builtFor: ["Professional services", "B2B sales teams", "Advisory firms"],
+    keyFeatures: [
+      { icon: "ti-clock-24", text: "Never misses an inbound — covers nights and weekends" },
+      { icon: "ti-message-dots", text: "Mirrors the caller's energy — never sounds robotic" },
+      { icon: "ti-clipboard-text", text: "Auto-logs every call with full transcript" },
+    ],
   },
   {
     id: "payment-agent",
@@ -147,6 +168,13 @@ export const agents = [
     status: "live",
     badge: null,
     useCases: ["billing-collections"],
+    demoBusiness: { name: "Maple Studio", sub: "B2B brand & web design agency" },
+    builtFor: ["Agencies & studios", "Freelancers", "B2B service providers"],
+    keyFeatures: [
+      { icon: "ti-credit-card", text: "One-tap Mastercard pay link in every invoice" },
+      { icon: "ti-mail-forward", text: "Polite, firm follow-ups so you stop chasing" },
+      { icon: "ti-trending-up", text: "Cash flow accelerates — DSO drops from day one" },
+    ],
   },
   {
     id: "marketing-copy-studio",
@@ -179,6 +207,13 @@ export const agents = [
     status: "live",
     badge: null,
     useCases: ["content-marketing"],
+    demoBusiness: { name: "Halo Skincare", sub: "DTC clean-beauty brand" },
+    builtFor: ["DTC brands", "Solo founders", "Marketing teams"],
+    keyFeatures: [
+      { icon: "ti-bolt", text: "From brief to copy in under 30 seconds" },
+      { icon: "ti-list-check", text: "3–5 distinct angles per brief — not word-swaps" },
+      { icon: "ti-shield-check", text: "Stays on-brand and within compliance rules" },
+    ],
   },
   {
     id: "hr-onboarding",
@@ -187,7 +222,7 @@ export const agents = [
     description:
       "Walks every new hire through their first week — collects documents, explains pay and policies, and nudges them on what's pending.",
     longDescription:
-      "When you're hiring baristas, shop staff, or front-desk help, onboarding usually slips. The New Hire Buddy gives every joiner a personal guide: it shares the dress code and shift info, collects the paperwork, answers the usual pay-and-benefits questions, and chases anything that's pending — so the owner can focus on the business, not the forms.",
+      "When you're hiring baristas, shop staff, or front-desk help, onboarding usually slips. This agent gives every new joiner a personal guide: it shares the dress code and shift info, collects the paperwork, answers the usual pay-and-benefits questions, and chases anything pending — so the owner can focus on the business, not the forms.",
     category: "hr",
     categoryLabel: "HR",
     channel: "Chat / Slack",
@@ -211,5 +246,12 @@ export const agents = [
     status: "live",
     badge: null,
     useCases: ["employee-onboarding"],
+    demoBusiness: { name: "Northstar Coffee", sub: "12-location café chain" },
+    builtFor: ["Cafés & restaurants", "Retail shops", "Boutique hotels"],
+    keyFeatures: [
+      { icon: "ti-user-check", text: "Personal guide for every new joiner" },
+      { icon: "ti-file-check", text: "Collects and verifies documents — hands-free" },
+      { icon: "ti-bell-ringing", text: "Chases pending items so the owner doesn't have to" },
+    ],
   },
 ];
