@@ -1,16 +1,7 @@
 import { useMemo, useState } from "react";
-import { agents, categories } from "../data/agents.js";
+import { agents, categories, useCases } from "../data/agents.js";
 import { AgentCard } from "../components/AgentCard.jsx";
 import "./Marketplace.css";
-
-const useCases = [
-  { id: "lead-gen", label: "Lead Generation" },
-  { id: "customer-engagement", label: "Customer Engagement" },
-  { id: "workflow", label: "Workflow Automation" },
-  { id: "data-analysis", label: "Data Analysis" },
-  { id: "content", label: "Content Creation" },
-  { id: "scheduling", label: "Scheduling" },
-];
 
 const sortTabs = [
   { id: "popular", label: "Popular", icon: "ti-sparkles" },
@@ -34,6 +25,9 @@ export function Marketplace() {
     let list = agents.filter((a) => {
       const matchesCat =
         activeCats.size === 0 || activeCats.has(a.category);
+      const matchesUseCase =
+        activeUseCases.size === 0 ||
+        (a.useCases || []).some((u) => activeUseCases.has(u));
       const q = query.trim().toLowerCase();
       const matchesQuery =
         !q ||
@@ -41,7 +35,7 @@ export function Marketplace() {
         a.tagline.toLowerCase().includes(q) ||
         a.description.toLowerCase().includes(q) ||
         a.categoryLabel.toLowerCase().includes(q);
-      return matchesCat && matchesQuery;
+      return matchesCat && matchesUseCase && matchesQuery;
     });
     if (sort === "top") {
       list = [...list].sort((a, b) => b.rating - a.rating);
@@ -97,6 +91,11 @@ export function Marketplace() {
               items={categories.filter((c) => c.id !== "all")}
               active={activeCats}
               onToggle={(id) => toggle(activeCats, setActiveCats, id)}
+              onClearAll={() => {
+                setActiveCats(new Set());
+                setActiveUseCases(new Set());
+              }}
+              showClear={activeCats.size > 0 || activeUseCases.size > 0}
             />
             <FilterSection
               title="Use Cases"
@@ -105,6 +104,11 @@ export function Marketplace() {
               onToggle={(id) =>
                 toggle(activeUseCases, setActiveUseCases, id)
               }
+              onClearAll={() => {
+                setActiveCats(new Set());
+                setActiveUseCases(new Set());
+              }}
+              showClear={activeCats.size > 0 || activeUseCases.size > 0}
             />
           </aside>
 
@@ -136,18 +140,14 @@ export function Marketplace() {
   );
 }
 
-function FilterSection({ title, items, active, onToggle }) {
-  const allSelected = active.size === 0;
+function FilterSection({ title, items, active, onToggle, onClearAll, showClear }) {
   return (
     <div className="press__filtergroup">
       <div className="press__filterhead">
         <span>{title}</span>
-        {!allSelected && (
-          <button
-            className="press__selectall"
-            onClick={() => active.forEach((id) => onToggle(id))}
-          >
-            Clear
+        {showClear && (
+          <button className="press__selectall" onClick={onClearAll}>
+            Clear all
           </button>
         )}
       </div>

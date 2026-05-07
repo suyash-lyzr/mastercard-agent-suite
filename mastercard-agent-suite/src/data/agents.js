@@ -7,8 +7,16 @@ export const categories = [
   { id: "sales", label: "Sales" },
   { id: "payments", label: "Payments" },
   { id: "marketing", label: "Marketing" },
-  { id: "operations", label: "Operations" },
   { id: "hr", label: "HR" },
+];
+
+export const useCases = [
+  { id: "inbound-calls", label: "Inbound Calls" },
+  { id: "customer-support", label: "Customer Support" },
+  { id: "lead-qualification", label: "Lead Qualification" },
+  { id: "billing-collections", label: "Billing & Collections" },
+  { id: "content-marketing", label: "Content & Marketing" },
+  { id: "employee-onboarding", label: "Employee Onboarding" },
 ];
 
 export const agents = [
@@ -23,6 +31,8 @@ export const agents = [
     category: "customer-service",
     categoryLabel: "Customer Service",
     channel: "Voice",
+    cardTag: "24/7 phone coverage",
+    cardTagIcon: "ti-clock-24",
     rating: 4.8,
     reviews: 142,
     icon: "ti-phone",
@@ -40,6 +50,7 @@ export const agents = [
     architectUrl: "https://preview--bloom-concierge-awesome-vault-d4qn.app.architect.new/",
     status: "live",
     badge: "Most popular",
+    useCases: ["inbound-calls", "customer-support"],
   },
   {
     id: "support-chat",
@@ -52,6 +63,8 @@ export const agents = [
     category: "customer-service",
     categoryLabel: "Customer Service",
     channel: "Chat",
+    cardTag: "Instant FAQ answers",
+    cardTagIcon: "ti-message-2",
     rating: 4.9,
     reviews: 214,
     icon: "ti-message-circle",
@@ -69,6 +82,7 @@ export const agents = [
     architectUrl: "https://preview--cove-brew-brilliant-beam-nyba.app.architect.new/",
     status: "live",
     badge: "Top rated",
+    useCases: ["customer-support"],
   },
   {
     id: "sales-voice",
@@ -81,6 +95,8 @@ export const agents = [
     category: "sales",
     categoryLabel: "Sales",
     channel: "Voice",
+    cardTag: "Qualifies & books calls",
+    cardTagIcon: "ti-target-arrow",
     rating: 4.6,
     reviews: 98,
     icon: "ti-speakerphone",
@@ -98,6 +114,7 @@ export const agents = [
     architectUrl: "https://atlas-voice-amazing-base-7nig.architect.space/",
     status: "live",
     badge: "New",
+    useCases: ["inbound-calls", "lead-qualification"],
   },
   {
     id: "payment-agent",
@@ -110,6 +127,8 @@ export const agents = [
     category: "payments",
     categoryLabel: "Payments",
     channel: "Email",
+    cardTag: "Auto invoice & follow-up",
+    cardTagIcon: "ti-receipt",
     rating: 4.7,
     reviews: 76,
     icon: "ti-credit-card",
@@ -127,6 +146,7 @@ export const agents = [
     architectUrl: "https://invoice-flow-mega-lab-92s7.architect.space/",
     status: "live",
     badge: null,
+    useCases: ["billing-collections"],
   },
   {
     id: "marketing-copy-studio",
@@ -139,6 +159,8 @@ export const agents = [
     category: "marketing",
     categoryLabel: "Marketing",
     channel: "Chat",
+    cardTag: "On-brand copy in seconds",
+    cardTagIcon: "ti-wand",
     rating: 4.7,
     reviews: 189,
     icon: "ti-pencil",
@@ -156,6 +178,7 @@ export const agents = [
     architectUrl: "https://forge-halo-clever-node-t7we.architect.space/",
     status: "live",
     badge: null,
+    useCases: ["content-marketing"],
   },
   {
     id: "hr-onboarding",
@@ -168,6 +191,8 @@ export const agents = [
     category: "hr",
     categoryLabel: "HR",
     channel: "Chat / Slack",
+    cardTag: "First-week guide",
+    cardTagIcon: "ti-checklist",
     rating: 4.5,
     reviews: 63,
     icon: "ti-users",
@@ -185,5 +210,6 @@ export const agents = [
     architectUrl: "https://onboard-compass-mega-flow-1h9t.architect.space/",
     status: "live",
     badge: null,
+    useCases: ["employee-onboarding"],
   },
 ];

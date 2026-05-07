@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer.jsx";
 import { Marketplace } from "./pages/Marketplace.jsx";
 import { AgentDetail } from "./pages/AgentDetail.jsx";
 import { Deployed } from "./pages/Deployed.jsx";
+import { MyAgents } from "./pages/MyAgents.jsx";
 
 export default function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Marketplace />} />
           <Route path="/agent/:id" element={<AgentDetail />} />
+          <Route path="/my-agents" element={<MyAgents />} />
           <Route path="/deployed" element={<Deployed />} />
           <Route
             path="*"

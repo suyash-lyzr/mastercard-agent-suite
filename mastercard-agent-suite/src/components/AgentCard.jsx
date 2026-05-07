@@ -41,7 +41,8 @@ export function AgentCard({ agent, index = 0 }) {
         <p className="agentcard__desc">{agent.description}</p>
         <div className="agentcard__foot">
           <span className="agentcard__channel">
-            <i className="ti ti-broadcast" /> {agent.channel}
+            <i className={`ti ${agent.cardTagIcon || "ti-bolt"}`} />{" "}
+            {agent.cardTag || agent.channel}
           </span>
           {agent.badge && (
             <span className="agentcard__badge-chip">
