@@ -179,9 +179,9 @@ export function AgentDetail() {
         <CloneModal
           agent={agent}
           onClose={() => setOpen(false)}
-          onDeploy={(payload) => {
+          onDeploy={(payload, prompt) => {
             setOpen(false);
-            navigate("/deployed", { state: { agent, payload } });
+            navigate("/deployed", { state: { agent, payload, prompt } });
           }}
         />
       )}

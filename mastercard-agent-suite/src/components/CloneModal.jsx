@@ -87,16 +87,10 @@ export function CloneModal({ agent, onClose, onDeploy }) {
 
   function submit(e) {
     e.preventDefault();
-    onDeploy({
-      businessName,
-      industry,
-      size,
-      ...values,
-      knowledge: knowledge?.name || null,
-      tone: values.tone, // surfaced to Deployed page
-      language: values.language,
-      hours: values.operatingHours || null,
-    });
+    if (agent.cloneUrl) {
+      window.open(agent.cloneUrl, "_blank", "noopener,noreferrer");
+    }
+    onClose();
   }
 
   // Group sequential non-full fields into rows of 2 (matching original layout)
@@ -220,8 +214,8 @@ export function CloneModal({ agent, onClose, onDeploy }) {
 
           <div className="modal__foot">
             <span className="modal__foot-note">
-              <i className="ti ti-bolt" />
-              Your custom app builds in 10–15 minutes.
+              <i className="ti ti-external-link" />
+              Opens your customised app in Architect in a new tab.
             </span>
             <button type="submit" className="btn btn--primary modal__submit">
               Build Customised App <span className="arrow">→</span>
